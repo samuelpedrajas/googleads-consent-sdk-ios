@@ -204,31 +204,47 @@ PACQueryParametersFromURL(NSURL *_Nonnull URL) {
     [self loadCompletedWithError:error];
     return;
   }
-  NSURL *URL = NULL;
-  NSString * language = [[NSLocale preferredLanguages] firstObject];
+  NSURL *URL = [resourceBundle URLForResource:@"consentform" withExtension:@"html"];
 
-  if ([language isEqualToString:@"cn"]) {
-    URL = [resourceBundle URLForResource:@"consentform_cn" withExtension:@"html"];
-  } else if ([language isEqualToString:@"de"]) {
-    URL = [resourceBundle URLForResource:@"consentform_de" withExtension:@"html"];
-  } else if ([language isEqualToString:@"es"]) {
-    URL = [resourceBundle URLForResource:@"consentform_es" withExtension:@"html"];
-  } else if ([language isEqualToString:@"fr"]) {
-    URL = [resourceBundle URLForResource:@"consentform_fr" withExtension:@"html"];
-  } else if ([language isEqualToString:@"it"]) {
-    URL = [resourceBundle URLForResource:@"consentform_it" withExtension:@"html"];
-  } else if ([language isEqualToString:@"ja"]) {
-    URL = [resourceBundle URLForResource:@"consentform_ja" withExtension:@"html"];
-  } else if ([language isEqualToString:@"ko"]) {
-    URL = [resourceBundle URLForResource:@"consentform_ko" withExtension:@"html"];
-  } else if ([language isEqualToString:@"nl"]) {
-    URL = [resourceBundle URLForResource:@"consentform_nl" withExtension:@"html"];
-  } else if ([language isEqualToString:@"pt"]) {
-    URL = [resourceBundle URLForResource:@"consentform_pt" withExtension:@"html"];
-  } else if ([language isEqualToString:@"ru"]) {
-    URL = [resourceBundle URLForResource:@"consentform_ru" withExtension:@"html"];
-  } else {
-    URL = [resourceBundle URLForResource:@"consentform" withExtension:@"html"];
+  for (NSString *preferredLanguage in [NSLocale preferredLanguages]) {
+    NSString *language = preferredLanguage;
+    if (language.length > 2) {
+      language = [language substringToIndex:2];
+    }
+
+    if ([language isEqualToString:@"cn"]) {
+      URL = [resourceBundle URLForResource:@"consentform_cn" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"de"]) {
+      URL = [resourceBundle URLForResource:@"consentform_de" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"es"]) {
+      URL = [resourceBundle URLForResource:@"consentform_es" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"fr"]) {
+      URL = [resourceBundle URLForResource:@"consentform_fr" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"it"]) {
+      URL = [resourceBundle URLForResource:@"consentform_it" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"ja"]) {
+      URL = [resourceBundle URLForResource:@"consentform_ja" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"ko"]) {
+      URL = [resourceBundle URLForResource:@"consentform_ko" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"nl"]) {
+      URL = [resourceBundle URLForResource:@"consentform_nl" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"pt"]) {
+      URL = [resourceBundle URLForResource:@"consentform_pt" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"ru"]) {
+      URL = [resourceBundle URLForResource:@"consentform_ru" withExtension:@"html"];
+      break;
+    } else if ([language isEqualToString:@"en"]) {
+      break;
+    }
   }
 
   NSURLRequest *URLRequest = [[NSURLRequest alloc] initWithURL:URL];
