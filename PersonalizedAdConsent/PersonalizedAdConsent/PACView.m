@@ -212,8 +212,8 @@ PACQueryParametersFromURL(NSURL *_Nonnull URL) {
       language = [language substringToIndex:2];
     }
 
-    if ([language isEqualToString:@"cn"]) {
-      URL = [resourceBundle URLForResource:@"consentform_cn" withExtension:@"html"];
+    if ([language isEqualToString:@"zh"]) {
+      URL = [resourceBundle URLForResource:@"consentform_zh" withExtension:@"html"];
       break;
     } else if ([language isEqualToString:@"de"]) {
       URL = [resourceBundle URLForResource:@"consentform_de" withExtension:@"html"];
